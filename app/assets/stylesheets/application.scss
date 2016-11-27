@@ -15,3 +15,10 @@
 //bootstrap
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+//issues
+.issue-jumbo {
+  background-image: url("/trump-grow-up.jpg");
+  height: 400px;
+  //background-size: cover;
+}
