@@ -15,8 +15,13 @@
 	<li class="active"><a href="#">Issues</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-	<li><a href="#">Sign in</a></li>
-	<li><a href="<%= new_user_registration_path %>">Sign up</a></li>
+	<% if user_signed_in? %>
+	  <li><a href="#"><%= current_user.username %></a></li>
+	  <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+	<% else %>
+	  <li><%= link_to 'Sign in', new_user_session_path %></li>
+	  <li><a href="<%= new_user_registration_path %>">Sign up</a></li>
+	<% end %>
       </ul>
     </div>
   </div>
