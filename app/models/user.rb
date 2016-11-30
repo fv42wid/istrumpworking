@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_many :issues
 
-  validates :email, presence: true
+  validates :email, presence: true, length: {minimum: 3}
   validates :username, presence: true, length: {maximum: 50}
 end
