@@ -20,7 +20,6 @@ class IssuesController < ApplicationController
       flash[:success] = "Issue created!"
       redirect_to @issue
     else
-      flash[:danger] = @issue.errors.full_messages
       render 'new'
     end
   end

@@ -2,6 +2,7 @@
   <div class="col-md-8">
     <h1>New Issue</h1>
     <%= form_for(@issue, :html => {:class => 'form-horizontal'}) do |f| %>
+      <%= render 'layouts/errors', object: f.object %>
       <div class="form-group">
 	<%= f.label :name, class: 'col-md-2 label-control' %>
 	<div class="col-md-10">

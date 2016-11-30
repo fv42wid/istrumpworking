@@ -16,6 +16,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+//devise errors
+.alert-alert {
+  @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text)
+}
+
+.alert-notice {
+  @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text)
+}
+
 //issues
 .issue-jumbo {
   background-image: url("/trump-grow-up.jpg");
