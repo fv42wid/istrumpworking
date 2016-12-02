@@ -13,3 +13,7 @@
 frank:
   email: frank@test.com
   username: frank
+
+mike:
+  email: mike@test.com
+  username: mikey
