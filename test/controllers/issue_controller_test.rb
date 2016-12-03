@@ -9,6 +9,7 @@ class IssueControllerTest < ActionDispatch::IntegrationTest
   def setup
     @mike = users(:mike)
     @admin = users(:frank)
+    @issue = issues(:one)
   end
 
   test "unverified user is redirected from new issue" do
@@ -53,6 +54,54 @@ class IssueControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'issues/show'
     assert_select "h1", "test"
+  end
+
+  test "unverified user is redirected from edit issue" do
+    get edit_issue_path(@issue)
+    assert_redirected_to new_user_session_path
+  end
+
+  test "unverified user redirected from update issue" do
+    patch issue_path(@issue), params: {issue: {
+        name: 'change name', description: 'new description'
+      } }
+    assert_redirected_to new_user_session_path
+    get issue_path(@issue)
+    assert_select "h1", "Issue One"
+    assert_select "p", "This is the first issue."
+  end
+
+  test "non-admin user redirected from edit issue" do
+    sign_in @mike
+    get edit_issue_path(@issue)
+    assert_redirected_to root_path
+  end
+
+  test "non-admin user redirected from update issue" do
+    sign_in @mike
+    patch issue_path(@issue), params: {issue: {
+        name: 'change name', description: 'new description'
+      } }
+    assert_redirected_to root_path
+    get issue_path(@issue)
+    assert_select "h1", "Issue One"
+    assert_select "p", "This is the first issue."
+  end
+
+  test "admin can access edit and update" do
+    sign_in @admin
+    get edit_issue_path(@issue)
+    assert_response :success
+    assert_template 'issues/edit'
+    patch issue_path(@issue), params: {issue: {
+      name: 'change name', description: 'new description'
+      } }
+    assert_redirected_to issue_path(@issue)
+    follow_redirect!
+    assert_template 'issues/show'
+    assert_select "h1", "change name"
+    assert_select "p", "new description"    
+    assert_select "div[class=?]", "alert alert-success", "Issue updated!"
   end
 
 end

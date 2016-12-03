@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyString
-  user_id: 1
+#one:
+#  name: MyString
+#  description: MyString
+#  user_id: 1
 
-two:
-  name: MyString
-  description: MyString
-  user_id: 1
+#two:
+#  name: MyString
+#  description: MyString
+#  user_id: 1
+
+one:
+  name: Issue One
+  description: This is the first issue.
+  user: frank
