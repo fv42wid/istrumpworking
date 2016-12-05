@@ -1,6 +1,7 @@
 class IssuesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :get_issue, only: [:delete]
 
   def index
 
@@ -38,8 +39,22 @@ class IssuesController < ApplicationController
     end
   end
 
+  def destroy
+    if @issue.destroy
+      flash[:success] = 'Issue deleted!'
+      redirect_to issue_path
+    else
+      flash[:danger] = 'Something went wrong'
+      redirect_to @issue
+    end
+  end
+
   private
   
+    def get_issue
+      @issue = Issue.find(params[:id])
+    end
+
     def issue_params
       params.require(:issue).permit(:name, :description)
     end
