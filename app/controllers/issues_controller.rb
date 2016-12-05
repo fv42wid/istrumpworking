@@ -1,7 +1,7 @@
 class IssuesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_admin, only: [:new, :create, :edit, :update, :destroy]
-  before_action :get_issue, only: [:delete]
+  before_action :get_issue, only: [:destroy]
 
   def index
 
@@ -42,7 +42,7 @@ class IssuesController < ApplicationController
   def destroy
     if @issue.destroy
       flash[:success] = 'Issue deleted!'
-      redirect_to issue_path
+      redirect_to issues_path
     else
       flash[:danger] = 'Something went wrong'
       redirect_to @issue

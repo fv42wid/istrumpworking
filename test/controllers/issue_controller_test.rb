@@ -104,4 +104,29 @@ class IssueControllerTest < ActionDispatch::IntegrationTest
     assert_select "div[class=?]", "alert alert-success", "Issue updated!"
   end
 
+  test "unverified user is redirected from destroy" do
+    assert_no_difference 'Issue.count' do
+      delete issue_path(@issue)
+    end
+    assert_redirected_to new_user_session_path
+  end
+
+  test "non-admin user redirected from destroy" do
+    sign_in @mike
+    assert_no_difference 'Issue.count' do
+      delete issue_path(@issue)
+    end
+    assert_redirected_to root_path    
+  end
+
+  test "admin can destroy issue" do
+    sign_in @admin
+    assert_difference 'Issue.count', -1 do
+      delete issue_path(@issue)
+    end
+    assert_redirected_to issues_path
+    follow_redirect!
+    assert_select "div[class=?]", "alert alert-success", "Issue deleted!"
+  end
+
 end
