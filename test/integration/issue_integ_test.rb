@@ -82,6 +82,15 @@ class IssueIntegTest < ActionDispatch::IntegrationTest
     sign_in @admin
     get issue_path(@issue)
     assert_select "a[href=?]", edit_issue_path(@issue), text: "Edit", count: 1
+    get edit_issue_path(@issue)
+    assert_response :success
+    assert_template 'issues/edit'
+    patch issue_path(@issue), params: {issue: {name: 'new name'} }
+    assert_redirected_to issue_path(@issue)
+    follow_redirect!
+    assert_template 'issues/show'
+    assert_select "h1", "new name"
+    assert_select "div[class=?]", "alert alert-success", text: "Issue updated!"
   end
   
 end
