@@ -1,14 +1,14 @@
 class IssuesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_admin, only: [:new, :create, :edit, :update, :destroy]
-  before_action :get_issue, only: [:destroy]
+  before_action :get_issue, only: [:show, :edit, :update, :destroy]
 
   def index
 
   end
 
   def show
-    @issue = Issue.find(params[:id])
+
   end
 
   def new
@@ -26,11 +26,10 @@ class IssuesController < ApplicationController
   end
 
   def edit
-    @issue = Issue.find(params[:id])
+
   end
 
   def update
-    @issue = Issue.find(params[:id])
     if @issue.update_attributes(issue_params)
       flash[:success] = "Issue updated!"
       redirect_to @issue
