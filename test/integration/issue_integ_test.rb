@@ -76,6 +76,19 @@ class IssueIntegTest < ActionDispatch::IntegrationTest
     sign_in @admin
     get root_path
     assert_select "a[href=?]", new_issue_path, text: "Create Issue", count: 1
+    get new_issue_path
+    assert_template 'issues/new'
+    assert_select "h1", 'New Issue'
+    assert_difference 'Issue.count', 1 do
+      post issues_path, params: {issue: {
+          name: 'new issue', description: 'test description'
+        } }
+    end
+    assert_redirected_to issue_path(Issue.last)
+    follow_redirect!
+    assert_select "h1", 'new issue'
+    assert_select 'p', 'test description'
+    assert_select "div[class=?]", 'alert alert-success', text: 'Issue created!'
   end
 
   test "admin can access edit and update" do
@@ -91,6 +104,18 @@ class IssueIntegTest < ActionDispatch::IntegrationTest
     assert_template 'issues/show'
     assert_select "h1", "new name"
     assert_select "div[class=?]", "alert alert-success", text: "Issue updated!"
+  end
+
+  test "admin can delete issue" do
+    sign_in @admin
+    get issue_path(@issue)
+    assert_select "a[class=?]", "btn btn-danger", text: 'Delete'
+    assert_difference 'Issue.count', -1 do
+      delete issue_path(@issue)
+    end
+    assert_redirected_to issues_path
+    follow_redirect!
+    assert_select "div[class=?]", 'alert alert-success', text: 'Issue deleted!'
   end
   
 end
