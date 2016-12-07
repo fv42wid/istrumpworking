@@ -7,7 +7,15 @@ class UpdatesController < ApplicationController
   end
 
   def create
-
+    @issue = Issue.find(params[:issue_id])
+    @update = current_user.updates.build(update_params)
+    @update.issue = @issue
+    if @update.save
+      flash[:success] = "Update created!"
+      redirect_to @update
+    else
+      render 'new'
+    end
   end
 
   private

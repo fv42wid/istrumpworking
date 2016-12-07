@@ -6,5 +6,32 @@
       <%= f.text_field :name, class: 'form-control' %>
     </div>
   </div>
+  
+  <div class="form-group">
+    <%= f.label :score, class: 'col-md-2 label-control' %>
+    <div class="col-md-10">
+      <%= f.text_field :score, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :citation, class: 'col-md-2 label-control' %>
+    <div class="col-md-10">
+      <%= f.text_field :citation, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, class: 'col-md-2 label-control' %>
+    <div class="col-md-10">
+      <%= f.text_area :description, class: 'form-control', rows: '3' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-10 col-md-offset-2">
+      <%= f.submit 'Create', class: 'btn btn-default' %>
+    </div>
+  </div>
 
 <% end %>
