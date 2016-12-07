@@ -1,12 +1,33 @@
 <div class="row">
   <div class="col-md-8">
-    <h1><%= @issue.name %></h1>
+    <ol class="breadcrumb">
+      <li><%= link_to 'Issues', issues_path %></li>
+      <li><%= link_to @issue.name, issue_path(@issue) %></li>
+    </ol>
+    <h1 class="text-center"><%= @issue.name %></h1>
     <% if is_admin? %>
-      <div class="btn-group" role="group" aria-label="...">
-	<%= link_to 'Edit', edit_issue_path(@issue), class: 'btn btn-default' %>
-	<%= link_to 'Delete', issue_path(@issue), method: :delete, class: 'btn btn-danger' %>
+      <div class="text-center">
+	<div class="btn-group" role="group" aria-label="...">
+	  <%= link_to 'Edit', edit_issue_path(@issue), class: 'btn btn-default' %>
+	  <%= link_to 'Delete', issue_path(@issue), method: :delete, class: 'btn btn-danger' %>
+	</div>
       </div>
     <% end %>
-    <p><%= @issue.description %></p>
+    <div class="progress">
+      <div class="<%= progress_bar_class(@issue.total_score) %>" role="progressbar" aria-valuenow="<%= @issue.total_score %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @issue.total_score %>%;">
+	<%= @issue.total_score %>%
+      </div>
+    </div>
+    <p class="lead text-center"><%= @issue.description %></p>
+    <h3 class="text-center">Updates</h3>
+    <div class="text-center">
+      <% if @issue.updates.any? %>
+        <ul class="list-unstyled">
+	  <% @issue.updates.each do |update| %>
+	    <li><%= link_to update.name, issue_update_path(@issue, update) %> - <%= update.score %>%</li>
+	  <% end %>
+	</ul>
+      <% end %>
+    </div>
   </div>
 </div>
