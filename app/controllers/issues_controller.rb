@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
   before_action :get_issue, only: [:show, :edit, :update, :destroy]
 
   def index
-
+    @issues = Issue.all
   end
 
   def show
