@@ -15,6 +15,14 @@
       <%= @issue.description %>
     </p>
     <h3 class="text-center"><%= @update.name %></h3>
+    <% if is_admin? %>
+      <div class="text-center">
+	<div class="btn-group" role="group" aria-label="...">
+	  <%= link_to 'Edit', edit_issue_update_path(@issue, @update), class: 'btn btn-default' %>
+	  <%= link_to 'Delete', issue_update_path(@issue, @update), method: :delete, class: 'btn btn-danger' %>
+	</div>
+      </div>
+    <% end %>
     <p class="text-center">
       <%= @update.description %>
     </p>
