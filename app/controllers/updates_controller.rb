@@ -17,7 +17,7 @@ class UpdatesController < ApplicationController
     @update.issue = @issue
     if @update.save
       flash[:success] = "Update created!"
-      redirect_to @update
+      redirect_to issue_update_path(@issue,@update)
     else
       render 'new'
     end
