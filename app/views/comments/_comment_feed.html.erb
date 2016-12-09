@@ -1,6 +1,11 @@
-<%= item.comments.each do |comment| %>
+<% item.comments.each do |comment| %>
   <div class="panel panel-default" id="comment-<%= comment.id %>">
     <div class="panel-heading">
+      <div class="pull-right">
+	<p class="text-muted">
+	  <%= time_ago_in_words(comment.updated_at) %> ago
+	</p>
+      </div>
       <h3 class="panel-title">
 	<%= comment.user.username %>
       </h3>

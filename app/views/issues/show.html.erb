@@ -37,6 +37,15 @@
     <h3 class="text-center">Comments</h3>
     <% if user_signed_in? %>
       <%= render partial: 'comments/comment_form', locals: {commentable: @issue} %>
+    <% else %>
+      <p class="text-center">
+	<%= link_to 'Sign in', new_user_session_path %> to comment
+      </p>
     <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <%= render partial: 'comments/comment_feed', locals: {item: @issue} %>
   </div>
 </div>
