@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :updates
   end
 
+  resources :comments
+
   root 'issues#index'
 
 end

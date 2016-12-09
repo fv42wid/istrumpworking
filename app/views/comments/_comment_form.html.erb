@@ -1,0 +1,12 @@
+<%= form_for(Comment.new, :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= render 'layouts/errors', object: f.object %>
+  <%= f.hidden_field :commentable_id, value: commentable.id %>
+  <%= f.hidden_field :commentable_type, value: commentable.class.to_s %>
+
+  <div class="form-group">
+    <%= f.text_area :body, class: 'form-control', placeholder: 'Comment' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Post', class: 'btn btn-default' %>
+  </div>
+<% end %>

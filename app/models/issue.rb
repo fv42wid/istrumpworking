@@ -1,6 +1,7 @@
 class Issue < ApplicationRecord
   belongs_to :user
   has_many :updates
+  has_many :comments, :as => :commentable
 
   validates :name, presence: true
   validates :description, presence:true
