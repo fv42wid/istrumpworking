@@ -21,6 +21,7 @@
 	      <%= current_user.username %> <span class="caret"></span>
 	    </a>
 	    <ul class="dropdown-menu">
+	      <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
 	      <% if is_admin? %>
 	        <li><%= link_to 'Create Issue', new_issue_path %></li>
 	      <% end %>
