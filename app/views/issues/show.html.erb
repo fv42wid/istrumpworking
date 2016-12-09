@@ -9,6 +9,7 @@
       <div class="text-center">
 	<div class="btn-group" role="group" aria-label="...">
 	  <%= link_to 'Edit', edit_issue_path(@issue), class: 'btn btn-default' %>
+	  <%= link_to 'Add Update', new_issue_update_path(@issue), class: 'btn btn-default' %>
 	  <%= link_to 'Delete', issue_path(@issue), method: :delete, class: 'btn btn-danger' %>
 	</div>
       </div>

@@ -23,6 +23,29 @@ class UpdatesController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @update.update_attributes(update_params)
+      flash[:success] = "Updated!"
+      redirect_to issue_update_path(@issue, @update)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    if @update.destroy
+      flash[:success] = "Update deleted!"
+      redirect_to @issue
+    else
+      flash[:danger] = "Something went wrong!"
+      redirect_to issue_update_path(@issue, @update)
+    end
+  end
+
   private
   
     def get_update
