@@ -7,12 +7,12 @@
 	<span class="icon-bar"></span>
 	<span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">ITW</a>
+      <a class="navbar-brand" href="<%= root_path %>">ITW</a>
     </div>
 
     <div class="collapse navbar-collapse" id="trump-navbar">
       <ul class="nav navbar-nav">
-	<li class="active"><a href="#">Issues</a></li>
+	<li class="active"><a href="<%= issues_path %>">Issues</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
