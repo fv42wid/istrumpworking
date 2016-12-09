@@ -31,3 +31,11 @@
     </p>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-8">
+    <h3 class="text-center">Comments</h3>
+    <% if user_signed_in? %>
+      <%= render partial: 'comments/comment_form', locals: {commentable: @update} %>
+    <% end %>
+  </div>
+</div>
