@@ -13,4 +13,5 @@
 one:
   name: Issue One
   description: This is the first issue.
+  slug: issue-one
   user: frank
