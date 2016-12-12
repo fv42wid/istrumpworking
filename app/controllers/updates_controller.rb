@@ -7,12 +7,12 @@ class UpdatesController < ApplicationController
   end
 
   def new
-    @issue = Issue.find(params[:issue_id])
+    @issue = Issue.friendly.find(params[:issue_id])
     @update = Update.new
   end
 
   def create
-    @issue = Issue.find(params[:issue_id])
+    @issue = Issue.friendly.find(params[:issue_id])
     @update = current_user.updates.build(update_params)
     @update.issue = @issue
     if @update.save
@@ -49,8 +49,8 @@ class UpdatesController < ApplicationController
   private
   
     def get_update
-      @update = Update.find(params[:id])
-      @issue = Issue.find(params[:issue_id])
+      @update = Update.friendly.find(params[:id])
+      @issue = Issue.friendly.find(params[:issue_id])
     end
 
     def update_params
