@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '3.3.6'
 gem 'devise'
+gem 'friendly_id', '~> 5.1.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

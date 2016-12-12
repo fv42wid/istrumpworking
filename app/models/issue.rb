@@ -1,4 +1,7 @@
 class Issue < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   belongs_to :user
   has_many :updates
   has_many :comments, :as => :commentable

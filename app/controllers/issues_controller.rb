@@ -51,7 +51,7 @@ class IssuesController < ApplicationController
   private
   
     def get_issue
-      @issue = Issue.find(params[:id])
+      @issue = Issue.friendly.find(params[:id])
     end
 
     def issue_params
