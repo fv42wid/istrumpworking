@@ -15,7 +15,7 @@
       </div>
     <% end %>
     <div class="progress">
-      <div class="<%= progress_bar_class(@issue.total_score) %>" role="progressbar" aria-valuenow="<%= @issue.total_score %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @issue.total_score %>%;">
+      <div class="<%= progress_bar_class(@issue.total_score) %>" role="progressbar" aria-valuenow="<%= @issue.total_score %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @issue.total_score %>%; min-width: 10%;">
 	<%= @issue.total_score %>%
       </div>
     </div>
