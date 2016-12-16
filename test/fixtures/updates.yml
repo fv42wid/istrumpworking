@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
-  citation: MyString
-  score: 1
-  user_id: 1
+  name: First Update
+  description: description for the first update.
+  citation: google.com
+  score: 20
+  user: frank
 
-two:
-  name: MyString
-  description: MyString
-  citation: MyString
-  score: 1
-  user_id: 1
+#two:
+#  name: MyString
+#  description: MyString
+#  citation: MyString
+#  score: 1
+#  user_id: 1
